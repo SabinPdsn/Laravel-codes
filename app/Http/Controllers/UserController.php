@@ -32,7 +32,7 @@ class UserController extends Controller
           'name' => 'required|string|max:100',
           'email'=>'required|string|unique:users,email',
           'password'=>'required|string|min:8',
-        //   'age' => ['required', new CheckAge],
+        //'age' => [' required', new CheckAge],
         ]);
 
        $data = User::create([
