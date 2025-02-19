@@ -13,7 +13,7 @@ class StudentController extends Controller
         $request->validate([
             'course_id' => 'required|array',
         ]);
-       $std_id->courses()->attach($request->course_id);
+       $std_id->courses()->sync($request->course_id);
 
        return response()->json([  "status"=>"id attached successfully",]);
     }
