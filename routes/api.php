@@ -18,6 +18,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -42,7 +43,7 @@ Route::post('/course/{std_id}',[StudentController::class,'attach_student_with_as
 // Route::get('/student/{id}',[StudentController::class,'get_student_of_specific_course_by_id']);
 Route::get('/student/{student}',[StudentController::class,'student']);
 
-
+ 
 Route::post('/login', [AuthController::class,'AdminLogin']);
 
 Route::middleware(['auth:sanctum','checkAdmin'])->group(function(){

@@ -17,19 +17,18 @@ class TrackApiHits
      */
     public function handle($request, Closure $next)
     {
+
         if($request->is('api*')){
+            $routename = Route::currentRouteName() ?? $request->path();
+            $parsed_route = parse_url($routename);
 
-        $routename = $request->path();
-
-        RouteHit::firstOrCreate(
-        ['route_name'=> $routename],
-            ['hit_count'=>0]
-            );
-
-        RouteHit::increment('hit_count');
-    }
+            $path_without_last_digit = preg_replace('/\/\d+$/','',$parsed_route['path']);
+            RouteHit::firstOrCreate(
+            ['route_name' => $path_without_last_digit],
+                ['hit_count'=>0]
+            )->increment('hit_count');
+        }
 
         return $next($request);
     }
-
 }

@@ -78,9 +78,7 @@ class UserController extends Controller
     }
 
     public function showbook(User $user_id){
-
          return response()->json([ $user_id->load('book')
-
         ]);
     }
 
